@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -41,6 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     'dashboard',
+    'users',
+    'helayel_app',
 ]
 
 MIDDLEWARE = [
@@ -58,7 +61,7 @@ ROOT_URLCONF = 'RC_cms.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates/')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -121,7 +124,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/templates/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "templates/static"),
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -132,14 +138,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Material Theme settings
 
 MATERIAL_ADMIN_SITE = {
-    # 'HEADER':  _('Your site header'),  # Admin site header
-    # 'TITLE':  _('Your site title'),  # Admin site title
-    'FAVICON':  'path/to/favicon',  # Admin site favicon (path to static should be specified)
+    'HEADER':  ("Helayel Administration"),  # Admin site header
+    'TITLE':  ("Helayel Administration"),  # Admin site title
+    'FAVICON':  'rc-favicon.ico',  # Admin site favicon (path to static should be specified)
     'MAIN_BG_COLOR':  'color',  # Admin site main color, css color should be specified
     'MAIN_HOVER_COLOR':  'color',  # Admin site main hover color, css color should be specified
-    'PROFILE_PICTURE':  'path/to/image',  # Admin site profile picture (path to static should be specified)
-    'PROFILE_BG':  'path/to/image',  # Admin site profile background (path to static should be specified)
-    'LOGIN_LOGO':  'path/to/image',  # Admin site logo on login page (path to static should be specified)
+    'PROFILE_PICTURE':  'RedCresent.png',  # Admin site profile picture (path to static should be specified)
+    'PROFILE_BG':  'red-square.png',  # Admin site profile background (path to static should be specified)
+    'LOGIN_LOGO':  '/RedCresent.jpg',  # Admin site logo on login page (path to static should be specified)
     'LOGOUT_BG':  'path/to/image',  # Admin site background on login/logout pages (path to static should be specified)
     'SHOW_THEMES':  True,  #  Show default admin themes button
     'TRAY_REVERSE': True,  # Hide object-tools and additional-submit-line by default
